@@ -60,4 +60,6 @@ def html_to_markdown(html_string: str) -> str:
     h = html2text.HTML2Text()
     h.body_width = 0
     h.ignore_images = True
-    return h.handle(html_string)
+    markdown = h.handle(html_string)
+    return markdown
+
