@@ -542,7 +542,7 @@ class HTML2Text(HTMLParser.HTMLParser):
                 if self.google_doc:
                     nest_count = self.google_nest_count(tag_style)
                 else:
-                    nest_count = len(self.list)
+                    nest_count = max(len(self.list) - 1, 0) # Mstone8370: Updated to match Discord's list nesting
                 self.o("  " * nest_count) #TODO: line up <ol><li>s > 9 correctly.
                 if li['name'] == "ul": self.o(self.ul_item_mark + " ")
                 elif li['name'] == "ol":
