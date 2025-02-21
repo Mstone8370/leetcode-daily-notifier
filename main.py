@@ -47,6 +47,7 @@ def gather_daily_challenge() -> dict:
 def main() -> int:
     DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
     INCLUDE_EXAMPLES = os.getenv("INCLUDE_EXAMPLES").lower() == "true"
+    INCLUDE_CONSTRAINTS = os.getenv("INCLUDE_CONSTRAINTS").lower() == "true"
 
     try:
         data = gather_daily_challenge()
@@ -54,7 +55,7 @@ def main() -> int:
         logger.error(f"Failed to gather daily challenge: {e}")
         return 1
     
-    discord.send_message(DISCORD_WEBHOOK_URL, data['data']['activeDailyCodingChallengeQuestion'], INCLUDE_EXAMPLES)
+    discord.send_message(DISCORD_WEBHOOK_URL, data['data']['activeDailyCodingChallengeQuestion'], INCLUDE_EXAMPLES, INCLUDE_CONSTRAINTS)
 
     return 0
 
